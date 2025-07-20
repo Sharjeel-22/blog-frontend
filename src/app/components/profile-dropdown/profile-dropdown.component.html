@@ -1,0 +1,58 @@
+<div class="profile-dropdown">
+    <p-button 
+      #profileBtn
+      styleClass="profile-trigger-btn"
+      [text]="true"
+      (click)="profileMenu.toggle($event)">
+      
+      <div class="profile-trigger">
+        <div class="avatar-container">
+          <p-avatar 
+            [label]="getUserInitials()"
+            styleClass="profile-avatar"
+            shape="circle">
+          </p-avatar>
+          <div class="online-indicator" *ngIf="currentUser().isOnline"></div>
+        </div>
+        
+        <div class="user-info">
+          <span class="user-name">{{ currentUser().name }}</span>
+          <span class="user-role">{{ currentUser().role }}</span>
+        </div>
+        
+        <i class="pi pi-chevron-down dropdown-icon"></i>
+      </div>
+    </p-button>
+  
+    <p-menu 
+      #profileMenu 
+      [model]="profileMenuItems" 
+      [popup]="true"
+      styleClass="profile-menu">
+      
+      <ng-template pTemplate="start">
+        <div class="profile-header">
+          <div class="profile-avatar-large">
+            <p-avatar 
+              [label]="getUserInitials()"
+              styleClass="large-avatar"
+              shape="circle">
+            </p-avatar>
+            <div class="online-badge" *ngIf="currentUser().isOnline">
+              <i class="pi pi-circle-fill"></i>
+            </div>
+          </div>
+          
+          <div class="profile-details">
+            <h4 class="profile-name">{{ currentUser().name }}</h4>
+            <p class="profile-email">{{ currentUser().email }}</p>
+            <p-badge 
+              [value]="currentUser().role" 
+              severity="info"
+              styleClass="role-badge">
+            </p-badge>
+          </div>
+        </div>
+      </ng-template>
+    </p-menu>
+  </div>

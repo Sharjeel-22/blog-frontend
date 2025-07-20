@@ -1,0 +1,110 @@
+<p-dialog [visible]="visible" [modal]="true" [closable]="false" [resizable]="false" [draggable]="false"
+    styleClass="create-post-dialog" [style]="{ width: '90vw', maxWidth: '800px' }" (onHide)="onClose()">
+
+    <ng-template pTemplate="header">
+        <div class="dialog-header" style="width:50rem;">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="pi pi-plus-circle"></i>
+                </div>
+                <div class="header-text">
+                    <h2 class="dialog-title">Create New Post</h2>
+                    <p class="dialog-subtitle">Share your thoughts with the world</p>
+                </div>
+                <div class="author-info">
+                    <p-avatar [label]="getAuthorInitials()" styleClass="author-avatar" shape="circle">
+                    </p-avatar>
+                    <div class="author-details">
+                        <span class="author-label">Author</span>
+                        <span class="author-name">{{ currentUser() }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="dialog-content">
+        <form [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+            <div class="form-container">
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="title" class="field-label">
+                                <i class="pi pi-bookmark"></i>
+                                Post Title
+                                <span class="required-asterisk">*</span>
+                            </label>
+                            <input id="title" type="text" pInputText formControlName="title"
+                                placeholder="Enter an engaging title for your post..." class="form-input"
+                                [class.p-invalid]="isFieldInvalid('title')" maxlength="200">
+                            <div class="field-footer">
+                                <small class="error-message" *ngIf="isFieldInvalid('title')">
+                                    {{ getFieldError('title') }}
+                                </small>
+                                <small class="character-count">
+                                    {{ getCharacterCount('title') }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="body" class="field-label">
+                                <i class="pi pi-file-edit"></i>
+                                Post Body
+                                <span class="required-asterisk">*</span>
+                            </label>
+                            <textarea id="body" pInputTextarea formControlName="body"
+                                placeholder="Write your post content here. Share your ideas, experiences, and insights with the community..."
+                                class="form-textarea" [class.p-invalid]="isFieldInvalid('body')" rows="12"
+                                maxlength="5000">
+              </textarea>
+                            <div class="field-footer">
+                                <small class="error-message" *ngIf="isFieldInvalid('body')">
+                                    {{ getFieldError('body') }}
+                                </small>
+                                <small class="character-count">
+                                    {{ getCharacterCount('body') }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p-divider></p-divider>
+
+                <div class="form-actions">
+                    <div class="action-buttons">
+                        <p-button label="Cancel" icon="pi pi-times" severity="secondary" [outlined]="true" type="button"
+                            [disabled]="isSubmitting()" (onClick)="onCancel()">
+                        </p-button>
+
+                        <p-button label="Create Post" icon="pi pi-check" type="submit"
+                            [disabled]="!createPostForm.valid" [loading]="isSubmitting()">
+                        </p-button>
+                    </div>
+
+                    <div class="form-info">
+                        <div class="info-item">
+                            <i class="pi pi-info-circle"></i>
+                            <span>All fields marked with * are required</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="pi pi-lightbulb"></i>
+                            <span>Excerpt will be automatically generated from your post body</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="loading-overlay" *ngIf="isSubmitting()">
+            <div class="loading-content">
+                <p-progressSpinner strokeWidth="3" animationDuration="1s">
+                </p-progressSpinner>
+                <p class="loading-text">Creating your post...</p>
+            </div>
+        </div>
+    </div>
+</p-dialog>

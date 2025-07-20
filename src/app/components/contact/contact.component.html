@@ -1,0 +1,135 @@
+<div class="contact-page">
+    <div class="container">
+        <div class="hero-section">
+            <h1>Contact Us</h1>
+            <p class="hero-description">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+        </div>
+        <div class="contact-info-grid">
+            <div class="info-card" *ngFor="let info of contactInfo">
+                <i [class]="info.icon" [style.color]="info.color"></i>
+                <h3>{{ info.title }}</h3>
+                <p class="info-value">{{ info.value }}</p>
+                <p class="info-description">{{ info.description }}</p>
+            </div>
+        </div>
+        <p-tabView>
+            <p-tabPanel header="Send Message" leftIcon="pi pi-send">
+                <div class="form-container">
+                    <div class="form-section">
+                        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input pInputText id="name" formControlName="name" placeholder="Enter your name"
+                                        [class.p-invalid]="isFieldInvalid('name')">
+                                    <small class="p-error" *ngIf="isFieldInvalid('name')">
+                                        {{ getFieldError('name') }}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input pInputText id="email" type="email" formControlName="email"
+                                        placeholder="Enter your email" [class.p-invalid]="isFieldInvalid('email')">
+                                    <small class="p-error" *ngIf="isFieldInvalid('email')">
+                                        {{ getFieldError('email') }}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone *</label>
+                                    <input pInputText id="phone" formControlName="phone" placeholder="Enter your phone"
+                                        [class.p-invalid]="isFieldInvalid('phone')">
+                                    <small class="p-error" *ngIf="isFieldInvalid('phone')">
+                                        {{ getFieldError('phone') }}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="department">Department *</label>
+                                    <p-dropdown id="department" formControlName="department"
+                                        [options]="departmentOptions()" placeholder="Select department"
+                                        [class.p-invalid]="isFieldInvalid('department')">
+                                    </p-dropdown>
+                                    <small class="p-error" *ngIf="isFieldInvalid('department')">
+                                        {{ getFieldError('department') }}
+                                    </small>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="subject">Subject *</label>
+                                    <input pInputText id="subject" formControlName="subject" placeholder="Enter subject"
+                                        [class.p-invalid]="isFieldInvalid('subject')">
+                                    <small class="p-error" *ngIf="isFieldInvalid('subject')">
+                                        {{ getFieldError('subject') }}
+                                    </small>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="message">Message *</label>
+                                    <textarea pInputTextarea id="message" formControlName="message"
+                                        placeholder="Enter your message" rows="5"
+                                        [class.p-invalid]="isFieldInvalid('message')">
+                    </textarea>
+                                    <small class="p-error" *ngIf="isFieldInvalid('message')">
+                                        {{ getFieldError('message') }}
+                                    </small>
+                                </div>
+                                <div class="form-group full-width">
+                                    <p-button type="submit" label="Send Message" icon="pi pi-send"
+                                        [loading]="isSubmitting" [disabled]="!contactForm.valid" styleClass="w-full">
+                                    </p-button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Inquiries" leftIcon="pi pi-table">
+                <div class="inquiries-section">
+                    <div class="section-header">
+                        <h2>Contact Inquiries</h2>
+                        <p-button label="Export" icon="pi pi-download" severity="secondary" (click)="exportInquiries()">
+                        </p-button>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">{{ totalInquiries }}</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ openInquiries }}</div>
+                            <div class="stat-label">Open</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ inProgressInquiries }}</div>
+                            <div class="stat-label">In Progress</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ closedInquiries }}</div>
+                            <div class="stat-label">Closed</div>
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-alpine"
+                            [rowData]="contactInquiries" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+                        </ag-grid-angular>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Offices" leftIcon="pi pi-map-marker">
+                <h2>Our Office Locations</h2>
+                <div class="offices-grid">
+                    <div class="office-card" *ngFor="let office of offices">
+                        <h3>{{ office.name }}</h3>
+                        <div class="office-info">
+                            <p><i class="pi pi-map-marker"></i> {{ office.address }}</p>
+                            <p><i class="pi pi-phone"></i> {{ office.phone }}</p>
+                            <p><i class="pi pi-envelope"></i> {{ office.email }}</p>
+                            <p><i class="pi pi-clock"></i> {{ office.hours }}</p>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+
+<p-toast position="top-right"></p-toast>

@@ -1,0 +1,166 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+      <div class="register-header mb-5">
+        <div class="brand-logo">
+          <i class="pi pi-book text-6xl text-primary"></i>
+        </div>
+        <div class="brand-info text-center">
+          <h1 class="text-900 font-bold text-5xl mb-2">BlogApp</h1>
+          <span class="text-600 font-medium">Join our community of writers and readers</span>
+        </div>
+      </div>
+  
+      <div class="w-full surface-card py-8 px-5 sm:px-8" style="max-width: 480px; border-radius: 53px;">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="text-center mb-5">
+            <div class="text-900 text-3xl font-medium mb-3">Create Account</div>
+            <span class="text-600 font-medium">Already have an account?</span>
+            <a class="font-medium no-underline ml-2 text-right cursor-pointer text-blue-500" (click)="navigateToLogin()">
+              Sign in here
+            </a>
+          </div>
+  
+          <div class="flex flex-column md:flex-row gap-3 mb-5">
+            <div class="flex-1">
+              <label for="firstName" class="block text-900 text-xl font-medium mb-2">First Name</label>
+              <input 
+                id="firstName" 
+                type="text" 
+                pInputText 
+                formControlName="firstName"
+                placeholder="Enter first name" 
+                class="w-full"
+                [class.p-invalid]="isFieldInvalid('firstName')"
+                style="padding: 1rem;">
+              <small class="p-error block" *ngIf="isFieldInvalid('firstName')">
+                {{ getFieldError('firstName') }}
+              </small>
+            </div>
+  
+            <div class="flex-1">
+              <label for="lastName" class="block text-900 text-xl font-medium mb-2">Last Name</label>
+              <input 
+                id="lastName" 
+                type="text" 
+                pInputText 
+                formControlName="lastName"
+                placeholder="Enter last name" 
+                class="w-full"
+                [class.p-invalid]="isFieldInvalid('lastName')"
+                style="padding: 1rem;">
+              <small class="p-error block" *ngIf="isFieldInvalid('lastName')">
+                {{ getFieldError('lastName') }}
+              </small>
+            </div>
+          </div>
+  
+          <div class="mb-5">
+            <label for="email" class="block text-900 text-xl font-medium mb-2">Email</label>
+            <input 
+              id="email" 
+              type="email" 
+              pInputText 
+              formControlName="email"
+              placeholder="Enter your email" 
+              class="w-full md:w-30rem"
+              [class.p-invalid]="isFieldInvalid('email')"
+              style="padding: 1rem;">
+            <small class="p-error block" *ngIf="isFieldInvalid('email')">
+              {{ getFieldError('email') }}
+            </small>
+          </div>
+  
+          <div class="mb-5">
+            <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
+            <p-password 
+              id="password" 
+              formControlName="password"
+              placeholder="Create a strong password" 
+              [toggleMask]="true" 
+              styleClass="w-full" 
+              inputStyleClass="w-full p-3 md:w-30rem"
+              [feedback]="true"
+              [class.p-invalid]="isFieldInvalid('password')">
+            </p-password>
+            <small class="p-error block" *ngIf="isFieldInvalid('password')">
+              {{ getFieldError('password') }}
+            </small>
+          </div>
+  
+          <div class="mb-5">
+            <label for="confirmPassword" class="block text-900 font-medium text-xl mb-2">Confirm Password</label>
+            <p-password 
+              id="confirmPassword" 
+              formControlName="confirmPassword"
+              placeholder="Confirm your password" 
+              [toggleMask]="true" 
+              styleClass="w-full" 
+              inputStyleClass="w-full p-3 md:w-30rem"
+              [feedback]="false"
+              [class.p-invalid]="isFieldInvalid('confirmPassword')">
+            </p-password>
+            <small class="p-error block" *ngIf="isFieldInvalid('confirmPassword')">
+              {{ getFieldError('confirmPassword') }}
+            </small>
+          </div>
+  
+          <div class="flex align-items-center mb-5">
+            <p-checkbox 
+              inputId="agree" 
+              [binary]="true" 
+              styleClass="mr-2"
+              [(ngModel)]="agreeToTerms"
+              [ngModelOptions]="{standalone: true}">
+            </p-checkbox>
+            <label for="agree" class="text-900">
+              I agree to the 
+              <a class="font-medium no-underline text-blue-500 cursor-pointer">Terms of Service</a>
+              and 
+              <a class="font-medium no-underline text-blue-500 cursor-pointer">Privacy Policy</a>
+            </label>
+          </div>
+  
+          <p-button 
+            label="Create Account" 
+            styleClass="w-full p-3 text-xl"
+            [loading]="isLoading()"
+            [disabled]="!registerForm.valid || !agreeToTerms()"
+            type="submit">
+          </p-button>
+        </form>
+  
+        <p-divider align="center" styleClass="my-5">
+          <span class="text-600 font-normal">OR</span>
+        </p-divider>
+  
+        <div class="flex flex-column gap-3">
+          <p-button 
+            label="Sign up with Google" 
+            icon="pi pi-google"
+            styleClass="w-full p-3 text-xl google-btn"
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="onGoogleRegister()">
+          </p-button>
+  
+          <p-button 
+            label="Sign up with Microsoft" 
+            icon="pi pi-microsoft"
+            styleClass="w-full p-3 text-xl microsoft-btn"
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="onMicrosoftRegister()">
+          </p-button>
+        </div>
+  
+        <div class="text-center mt-6">
+          <span class="text-600 font-medium text-sm">
+            By creating an account, you agree to receive updates and promotional emails from BlogApp. 
+            You can unsubscribe at any time.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p-toast></p-toast>

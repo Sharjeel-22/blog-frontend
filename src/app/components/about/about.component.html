@@ -1,0 +1,82 @@
+
+<div class="about-page">
+    <div class="container">
+      <div class="hero-section">
+        <h1>About PrimeLand</h1>
+        <p class="hero-description">
+          We are a modern technology company focused on creating innovative solutions 
+          that help businesses thrive in the digital world.
+        </p>
+      </div>
+      <p-tabView>
+        <p-tabPanel header="Our Story" leftIcon="pi pi-book">
+          <div class="content-grid">
+            <div class="content-main">
+              <h2>Our Journey</h2>
+              <p>
+                Founded in 2020, PrimeLand started with a simple mission: make technology accessible 
+                and useful for everyone. Today, we serve thousands of customers worldwide.
+              </p>
+              
+              <div class="timeline">
+                <div class="timeline-item" *ngFor="let event of timelineEvents">
+                  <div class="timeline-marker" [style.background-color]="event.color">
+                    <i [class]="event.icon"></i>
+                  </div>
+                  <div class="timeline-content">
+                    <h4>{{ event.title }}</h4>
+                    <span class="timeline-date">{{ event.date }}</span>
+                    <p>{{ event.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="content-sidebar">
+              <p-card header="Company Stats">
+                <div class="stats">
+                  <div class="stat-item" *ngFor="let stat of statistics">
+                    <div class="stat-number">{{ stat.value }}{{ stat.unit }}</div>
+                    <div class="stat-label">{{ stat.label }}</div>
+                  </div>
+                </div>
+              </p-card>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Our Team" leftIcon="pi pi-users">
+          <h2>Meet Our Team</h2>
+          <div class="team-grid">
+            <ag-grid-angular
+              style="width: 100%; height: 400px;"
+              class="ag-theme-alpine"
+              [rowData]="teamMembers"
+              [columnDefs]="columnDefs"
+              [gridOptions]="gridOptions">
+            </ag-grid-angular>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Our Values" leftIcon="pi pi-heart">
+          <div class="values-grid">
+            <div class="value-card">
+              <i class="pi pi-lightbulb value-icon"></i>
+              <h3>Innovation</h3>
+              <p>We constantly explore new technologies and ideas to solve problems better.</p>
+            </div>
+            
+            <div class="value-card">
+              <i class="pi pi-shield value-icon"></i>
+              <h3>Quality</h3>
+              <p>Every product we create meets the highest standards of excellence.</p>
+            </div>
+            
+            <div class="value-card">
+              <i class="pi pi-users value-icon"></i>
+              <h3>Teamwork</h3>
+              <p>We believe great things happen when talented people work together.</p>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>

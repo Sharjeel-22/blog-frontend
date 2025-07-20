@@ -1,0 +1,106 @@
+<p-dialog [visible]="visible" [modal]="true" [closable]="true" [resizable]="false" [draggable]="false"
+  styleClass="blog-detail-dialog" [style]="{ width: '95vw', maxWidth: '1000px', height: '90vh' }" (onHide)="onClose()">
+
+  <ng-template pTemplate="header">
+    <div class="dialog-header" style="width:60rem;">
+      <div class="header-content">
+        <div class="category-badge">
+          <p-tag value="Article" severity="secondary" [rounded]="true">
+          </p-tag>
+        </div>
+        <h2 class="dialog-title">{{ selectedPost()?.title }}</h2>
+        <div class="post-meta">
+          <div class="author-info">
+            <p-avatar [label]="authorInitials()" styleClass="author-avatar" shape="circle">
+            </p-avatar>
+            <span class="author-name">{{ selectedPost()?.author }}</span>
+          </div>
+          <div class="meta-divider">•</div>
+          <span class="publish-date">{{ formattedPublishDate() }}</span>
+          <div class="meta-divider">•</div>
+          <span class="read-time">{{ getEstimatedReadTime() }} min read</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="dialog-content" *ngIf="isPostValid()">
+    <div class="post-summary" *ngIf="selectedPost()?.excerpt">
+      <div class="summary-icon">
+        <i class="pi pi-info-circle"></i>
+      </div>
+      <p class="summary-text">{{ selectedPost()?.excerpt }}</p>
+    </div>
+
+    <p-divider *ngIf="selectedPost()?.excerpt"></p-divider>
+    <div class="post-actions">
+      <p-button icon="pi pi-heart" severity="secondary" [text]="true" pTooltip="Like this post" tooltipPosition="top"
+        (onClick)="likePost()">
+      </p-button>
+
+      <p-button icon="pi pi-bookmark" severity="secondary" [text]="true" pTooltip="Bookmark for later"
+        tooltipPosition="top" (onClick)="bookmarkPost()">
+      </p-button>
+
+      <p-button icon="pi pi-share-alt" severity="secondary" [text]="true" pTooltip="Share this post"
+        tooltipPosition="top" (onClick)="sharePost()">
+      </p-button>
+
+      <div class="actions-divider"></div>
+
+      <p-chip [label]="'Est. ' + getEstimatedReadTime() + ' min read'" icon="pi pi-clock" styleClass="views-chip">
+      </p-chip>
+    </div>
+
+    <p-divider></p-divider>
+    <p-scrollPanel class="post-content-scroll" [style]="{ width: '100%', height: '400px' }">
+      <div class="post-content">
+        <div class="content-section" *ngFor="let section of getContentSections(); let i = index">
+          <h3 class="section-title" *ngIf="section.title">
+            <span class="section-number">{{ i + 1 }}.</span>
+            {{ section.title }}
+          </h3>
+          <div class="section-content" [innerHTML]="section.content"></div>
+          <p-divider *ngIf="i < getContentSections().length - 1" styleClass="section-divider"></p-divider>
+        </div>
+      </div>
+    </p-scrollPanel>
+
+    <p-divider></p-divider>
+    <div class="post-footer">
+      <div class="footer-stats">
+        <div class="stat-item">
+          <i class="pi pi-calendar"></i>
+          <span>Published {{ formattedPublishDate() }}</span>
+        </div>
+        <div class="stat-item">
+          <i class="pi pi-clock"></i>
+          <span>{{ getEstimatedReadTime() }} minute read</span>
+        </div>
+        <div class="stat-item">
+          <i class="pi pi-user"></i>
+          <span>By {{ selectedPost()?.author }}</span>
+        </div>
+      </div>
+
+      <div class="footer-actions">
+        <p-button label="Close" icon="pi pi-times" severity="secondary" [outlined]="true" (onClick)="onClose()">
+        </p-button>
+      </div>
+    </div>
+  </div>
+  <div class="loading-content" *ngIf="!isPostValid()">
+    <div class="loading-header">
+      <p-skeleton width="120px" height="30px" styleClass="mb-3"></p-skeleton>
+      <p-skeleton width="80%" height="40px" styleClass="mb-2"></p-skeleton>
+      <p-skeleton width="60%" height="20px"></p-skeleton>
+    </div>
+    <p-divider></p-divider>
+    <div class="loading-body">
+      <p-skeleton width="100%" height="200px" styleClass="mb-3"></p-skeleton>
+      <p-skeleton width="100%" height="20px" styleClass="mb-2"></p-skeleton>
+      <p-skeleton width="100%" height="20px" styleClass="mb-2"></p-skeleton>
+      <p-skeleton width="80%" height="20px"></p-skeleton>
+    </div>
+  </div>
+</p-dialog>

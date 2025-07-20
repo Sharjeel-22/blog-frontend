@@ -1,0 +1,241 @@
+.surface-ground {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    min-height: 100vh;
+  }
+  
+  .register-header {
+    text-align: center;
+    color: white;
+  
+    .brand-logo {
+      margin-bottom: 1.5rem;
+      
+      i {
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      }
+    }
+  
+    .brand-info {
+      h1 {
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 0.5rem;
+      }
+  
+      span {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  .surface-card {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  :host ::ng-deep {
+    .p-inputtext {
+      border-radius: 12px;
+      border: 2px solid #e1e5e9;
+      transition: all 0.3s ease;
+  
+      &:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      }
+  
+      &.p-invalid {
+        border-color: #ef4444;
+        
+        &:focus {
+          border-color: #ef4444;
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+      }
+    }
+  
+    .p-password {
+      .p-inputtext {
+        border-radius: 12px;
+      }
+  
+      &.p-invalid .p-inputtext {
+        border-color: #ef4444;
+        
+        &:focus {
+          border-color: #ef4444;
+          box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+      }
+  
+      .p-password-panel {
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        margin-top: 0.5rem;
+  
+        .p-password-meter {
+          border-radius: 6px;
+          overflow: hidden;
+        }
+      }
+    }
+  
+    .p-checkbox {
+      .p-checkbox-box {
+        border-radius: 6px;
+        border: 2px solid #e1e5e9;
+        transition: all 0.3s ease;
+  
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+  
+        &.p-highlight {
+          background: #10b981;
+          border-color: #10b981;
+        }
+      }
+    }
+  
+    .p-button {
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+  
+      &:not(:disabled):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+  
+      &.google-btn {
+        border-color: #db4437;
+        color: #db4437;
+  
+        &:hover {
+          background: #db4437;
+          border-color: #db4437;
+          color: white;
+        }
+  
+        .pi-google::before {
+          content: '\e900';
+        }
+      }
+  
+      &.microsoft-btn {
+        border-color: #00a1f1;
+        color: #00a1f1;
+  
+        &:hover {
+          background: #00a1f1;
+          border-color: #00a1f1;
+          color: white;
+        }
+  
+        .pi-microsoft::before {
+          content: '\e901';
+        }
+      }
+  
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  
+    .p-divider {
+      margin: 2rem 0;
+  
+      .p-divider-content {
+        background: transparent;
+        
+        span {
+          background: rgba(255, 255, 255, 0.95);
+          padding: 0 1rem;
+          border-radius: 20px;
+          font-weight: 500;
+        }
+      }
+    }
+  
+    .p-error {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  
+    .p-toast {
+      .p-toast-message {
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  
+  .text-blue-500 {
+    color: #10b981 !important;
+    transition: color 0.3s ease;
+  
+    &:hover {
+      color: #059669 !important;
+      text-decoration: underline;
+    }
+  }
+  
+  .flex-1 {
+    flex: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .surface-card {
+      margin: 1rem;
+      padding: 2rem 1.5rem !important;
+      border-radius: 24px !important;
+    }
+  
+    .register-header {
+      margin-bottom: 2rem !important;
+  
+      .brand-info {
+        h1 {
+          font-size: 2.5rem !important;
+        }
+  
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+  
+    .text-center .text-3xl {
+      font-size: 1.875rem !important;
+    }
+  
+    .flex.flex-column.md\\:flex-row {
+      flex-direction: column !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-header {
+      .brand-logo i {
+        font-size: 3rem !important;
+      }
+  
+      .brand-info h1 {
+        font-size: 2rem !important;
+      }
+    }
+  
+    .surface-card {
+      padding: 1.5rem 1rem !important;
+    }
+  
+    .text-sm {
+      font-size: 0.8rem !important;
+    }
+  }

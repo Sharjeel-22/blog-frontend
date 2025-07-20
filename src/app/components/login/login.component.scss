@@ -1,0 +1,356 @@
+:host {
+    --primary-color: #10b981;
+    --primary-color-text: #ffffff;
+    --surface-0: #ffffff;
+    --surface-50: #f8fafc;
+    --surface-900: #0f172a;
+    --surface-950: #ffffff;
+    --text-color: #334155;
+    --text-color-secondary: #64748b;
+    --muted-color: #64748b;
+  }
+  
+  :host-context(.dark) {
+    --surface-0: #0f172a;
+    --surface-50: #020617;
+    --surface-900: #f8fafc;
+    --surface-950: #ffffff;
+    --text-color: #f1f5f9;
+    --text-color-secondary: #cbd5e1;
+    --muted-color: #94a3b8;
+  }
+  
+  .bg-surface-50 {
+    background-color: var(--surface-50);
+  }
+  
+  .dark\:bg-surface-950 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--surface-950);
+    }
+  }
+  
+  .bg-surface-0 {
+    background-color: var(--surface-0);
+  }
+  
+  .dark\:bg-surface-900 {
+    @media (prefers-color-scheme: dark) {
+    border: 1px solid #eee;
+    }
+  }
+  
+  .text-surface-900 {
+    color: var(--surface-900);
+  }
+  
+  .dark\:text-surface-0 {
+    @media (prefers-color-scheme: dark) {
+      color: var(--surface-0);
+    }
+  }
+  
+  .text-muted-color {
+    color: var(--muted-color);
+  }
+  
+  .text-primary {
+    color: var(--primary-color);
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .min-w-\[100vw\] {
+    min-width: 100vw;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .mb-8 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .w-16 {
+    width: 4rem;
+  }
+  
+  .md\:w-\[30rem\] {
+    @media (min-width: 768px) {
+      width: 30rem;
+    }
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .sm\:px-20 {
+    @media (min-width: 640px) {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+  
+  .gap-8 {
+    gap: 2rem;
+  }
+  
+  .no-underline {
+    text-decoration: none;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  :host ::ng-deep {
+    .p-inputtext {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      transition: border-color 0.2s, box-shadow 0.2s;
+  
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.2);
+      }
+  
+      &.p-invalid {
+        border-color: #ef4444;
+      }
+    }
+  
+    .p-password {
+      width: 100%;
+  
+      .p-inputtext {
+        width: 100%;
+      }
+  
+      &.p-invalid .p-inputtext {
+        border-color: #ef4444;
+      }
+    }
+  
+    .p-checkbox {
+      .p-checkbox-box {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 4px;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  
+        &.p-highlight {
+          background: var(--primary-color);
+          border-color: var(--primary-color);
+        }
+  
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.2);
+        }
+      }
+    }
+  
+    .p-button {
+      background: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color-text);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 1rem;
+  
+      &:enabled:hover {
+        background: #059669;
+        border-color: #059669;
+      }
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.2);
+      }
+  
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  
+    .p-error {
+      color: #ef4444;
+      font-size: 0.875rem;
+      display: block;
+      margin-top: 0.25rem;
+    }
+  
+    .p-toast {
+      .p-toast-message {
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+        &.p-toast-message-success {
+          background: #10b981;
+          border: 1px solid #10b981;
+          color: white;
+        }
+  
+        &.p-toast-message-error {
+          background: #ef4444;
+          border: 1px solid #ef4444;
+          color: white;
+        }
+  
+        &.p-toast-message-info {
+          background: #3b82f6;
+          border: 1px solid #3b82f6;
+          color: white;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .py-20 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  
+    .px-8 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  
+    .text-3xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  
+    .text-xl {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+    }
+  
+    .gap-8 {
+      gap: 1rem;
+    }
+  
+    .mb-8 {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .w-16 {
+      width: 3rem;
+    }
+  
+    .py-20 {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  
+    .px-8 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  
+    .flex.items-center.justify-between {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
